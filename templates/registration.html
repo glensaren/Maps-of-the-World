@@ -1,0 +1,90 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'styles/log-in-and-registration.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/normalize.css' %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Регистрация — Maps of the World</title>
+</head>
+<body>
+    <form method="POST" action="{% url 'register' %}">
+        {% csrf_token %}
+        <h2>Регистрация</h2>
+
+        <!-- Общие ошибки формы -->
+        {% if form.non_field_errors %}
+            <ul class="form-errors">
+                {% for error in form.non_field_errors %}
+                    <li>{{ error }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        <!-- Имя -->
+        <div class="input-box">
+            <label for="id_username">Имя</label>
+            {{ form.username }}
+            {% if form.username.errors %}
+                <ul class="field-errors">
+                    {% for error in form.username.errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+
+        <!-- Email -->
+        <div class="input-box">
+            <label for="id_email">Адрес электронной почты</label>
+            {{ form.email }}
+            {% if form.email.errors %}
+                <ul class="field-errors">
+                    {% for error in form.email.errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+
+        <!-- Пароль -->
+        <div class="input-box">
+            <label for="id_password">Пароль</label>
+            {{ form.password }}
+            {% if form.password.errors %}
+                <ul class="field-errors">
+                    {% for error in form.password.errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+
+        <!-- Политика конфиденциальности -->
+        <div class="privacy-policy">
+            {{ form.privacy_policy }}
+            <label for="id_privacy_policy">Я согласен с политикой конфиденциальности</label>
+            {% if form.privacy_policy.errors %}
+                <ul class="field-errors">
+                    {% for error in form.privacy_policy.errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+
+        <!-- Кнопка -->
+        <button type="submit">Зарегистрироваться</button>
+
+        <!-- Ссылка на логин -->
+        <div class="redirect-linkbox">
+            <p>Уже есть аккаунт?</p>
+            <a href="{% url 'login' %}">Войти</a>
+        </div>
+    </form>
+
+    <div class="mapbox"></div>
+</body>
+</html>
