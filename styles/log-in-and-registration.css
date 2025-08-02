@@ -47,6 +47,9 @@ label{
 
 .input-box input{
     width: 100%;
+    padding: 1rem .25rem;
+    border-radius: 1.25rem;
+    border: .15rem solid rgb(170, 170, 170)
 }
 
 .input-box{
@@ -65,6 +68,7 @@ label{
 .redirect-linkbox{
     display: inline-block;
     margin: 0 auto;
+    text-align: center;
 }
 
 .redirect-linkbox *{
