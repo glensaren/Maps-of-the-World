@@ -1,0 +1,26 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'styles/profile.css' %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Профиль пользователя</title>
+</head>
+<body>
+    <h2>Ваш профиль</h2>
+
+    <div>
+        <h4>Имя: {{ user.username }}</h4>
+        <h4>Email: {{ user.email }}</h4>
+        <!-- Добавь другие данные профиля, если нужно -->
+    </div>
+
+   <form method="post" action="{% url 'logout' %}">
+    {% csrf_token %}
+    <button type="submit">Выйти</button>
+    </form>
+
+</body>
+</html>
